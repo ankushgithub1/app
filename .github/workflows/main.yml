@@ -33,6 +33,12 @@ jobs:
       run: |
         eval $(minikube docker-env)
         docker build -t nodejs-app:latest .
+        
+      # Step 6: push docker image on docker hub
+    - name: push Docker image
+      run: |
+        docker tag nodejs-app:latest ankushdockerhub/nodejs-app:latest
+        docker push ankushdockerhub/nodejs-app:latest    
 
     # Step 6: Apply Kubernetes manifests
     - name: Deploy to Minikube
